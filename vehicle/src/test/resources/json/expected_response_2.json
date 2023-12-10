@@ -1,0 +1,115 @@
+{
+  "content": [
+    {
+      "id": "0bc9d8e2-35f4-a4b3-c88d-72a1b3c4d5f9",
+      "createdBy": "user@example.com",
+      "filePath": null,
+      "brand": "Toyota",
+      "model": "Camry",
+      "yearOfProduction": 2023,
+      "generation": 2,
+      "acceleration": 7.2,
+      "euroCarSegment": "D",
+      "kerbWeight": 1500.0,
+      "grossWeight": 1800.0,
+      "drive": "FWD",
+      "transmission": "automatic",
+      "engines": [
+        {
+          "id": "0bc9d8e2-35f4-a4b3-c88d-72a1b3c4d5f8",
+          "engineDisplacementInCubicCentimeters": null,
+          "hp": 180,
+          "engineTorqueInNm": 250.0,
+          "energySource": "NaturalGas"
+        }
+      ],
+      "body": {
+        "id": "0bc9d8e2-35f4-a4b3-c88d-72a1b3c4d5f6",
+        "numberOfDoors": 4,
+        "seats": 5,
+        "bodyType": "PanelTruck",
+        "additionalEquipment": {
+          "id": "0bc9d8e2-35f4-a4b3-c88d-72a1b3c4d5f5",
+          "airConditioning": "ThreeZoneAutomatic",
+          "headlights": "Halogen",
+          "control": "PredictiveCruise"
+        }
+      },
+      "euroNCAP": {
+        "id": "0bc9d8e2-35f4-a4b3-c88d-72a1b3c4d5f7",
+        "adultOccupantPercentage": 88.0,
+        "childOccupantPercentage": 82.0,
+        "vulnerableRoadUsersPercentage": 85.0,
+        "safetyAssistPercentage": 70.0
+      }
+    },
+    {
+      "id": "0bc9d8e2-35f4-a4b3-c88d-72a1b3c4d5f4",
+      "createdBy": "bodziov3@gmail.com",
+      "filePath": null,
+      "brand": "Volkswagen",
+      "model": "Qe",
+      "yearOfProduction": 2022,
+      "generation": 1,
+      "acceleration": 6.4,
+      "euroCarSegment": "C",
+      "kerbWeight": 2384.0,
+      "grossWeight": 3000.0,
+      "drive": "AWDManuallyAttached",
+      "transmission": "automatic",
+      "engines": [
+        {
+          "id": "0bc9d8e2-35f4-a4b3-c88d-72a1b3c4d5f3",
+          "engineDisplacementInCubicCentimeters": null,
+          "hp": 201,
+          "engineTorqueInNm": 310.0,
+          "energySource": "Hybrid"
+        }
+      ],
+      "body": {
+        "id": "0bc9d8e2-35f4-a4b3-c88d-72a1b3c4d5f1",
+        "numberOfDoors": 5,
+        "seats": 7,
+        "bodyType": "Convertible",
+        "additionalEquipment": {
+          "id": "0bc9d8e2-35f4-a4b3-c88d-72a1b3c4d5f0",
+          "airConditioning": "FourOrMultiZoneAutomatic",
+          "headlights": "Xenon",
+          "control": "AdaptiveCruise"
+        }
+      },
+      "euroNCAP": {
+        "id": "0bc9d8e2-35f4-a4b3-c88d-72a1b3c4d5f2",
+        "adultOccupantPercentage": 92.0,
+        "childOccupantPercentage": 87.0,
+        "vulnerableRoadUsersPercentage": 90.0,
+        "safetyAssistPercentage": 60.0
+      }
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "sorted": true,
+      "unsorted": false,
+      "empty": false
+    },
+    "pageNumber": 0,
+    "pageSize": 4,
+    "offset": 0,
+    "paged": true,
+    "unpaged": false
+  },
+  "last": true,
+  "totalElements": 2,
+  "totalPages": 1,
+  "first": true,
+  "numberOfElements": 2,
+  "size": 4,
+  "number": 0,
+  "sort": {
+    "sorted": true,
+    "unsorted": false,
+    "empty": false
+  },
+  "empty": false
+}

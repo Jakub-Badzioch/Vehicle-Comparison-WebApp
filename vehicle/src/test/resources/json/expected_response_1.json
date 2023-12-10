@@ -1,0 +1,72 @@
+{
+  "content": [
+    {
+      "id": "0bc9d8e2-35f4-a4b3-c88d-72a1b3c4d5a9",
+      "createdBy": "bodziov3@gmail.com",
+      "filePath": null,
+      "brand": "Volkswagen",
+      "model": "ID. Buzz",
+      "yearOfProduction": 2022,
+      "generation": 1,
+      "acceleration": 6.4,
+      "euroCarSegment": "M",
+      "kerbWeight": 2384.0,
+      "grossWeight": 3000.0,
+      "drive": "AWDPermanent",
+      "transmission": "automatic",
+      "engines": [
+        {
+          "id": "0bc9d8e2-35f4-a4b3-c88d-72a1b3c4d5e9",
+          "engineDisplacementInCubicCentimeters": null,
+          "hp": 201,
+          "engineTorqueInNm": 310.0,
+          "energySource": "Electricity"
+        }
+      ],
+      "body": {
+        "id": "0bc9d8e2-35f4-a4b3-c88d-72a1b3c4d5e7",
+        "numberOfDoors": 5,
+        "seats": 7,
+        "bodyType": "Minivan",
+        "additionalEquipment": {
+          "id": "0bc9d8e2-35f4-a4b3-c88d-72a1b3c4d5e6",
+          "airConditioning": "FourOrMultiZoneAutomatic",
+          "headlights": "FullLed",
+          "control": "AdaptiveCruise"
+        }
+      },
+      "euroNCAP": {
+        "id": "0bc9d8e2-35f4-a4b3-c88d-72a1b3c4d5e8",
+        "adultOccupantPercentage": 92.0,
+        "childOccupantPercentage": 87.0,
+        "vulnerableRoadUsersPercentage": 90.0,
+        "safetyAssistPercentage": 60.0
+      }
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "empty": true,
+      "unsorted": true,
+      "sorted": false
+    },
+    "offset": 0,
+    "pageSize": 1,
+    "pageNumber": 0,
+    "paged": true,
+    "unpaged": false
+  },
+  "last": true,
+  "totalPages": 1,
+  "totalElements": 1,
+  "size": 1,
+  "number": 0,
+  "sort": {
+    "empty": true,
+    "unsorted": true,
+    "sorted": false
+  },
+  "numberOfElements": 1,
+  "first": true,
+  "empty": false
+}

@@ -1,0 +1,1 @@
+DELETE FROM `vehicle_comparison_site_db`.`token`;

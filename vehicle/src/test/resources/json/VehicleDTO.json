@@ -1,0 +1,35 @@
+{
+  "brand": "Volkswagen",
+  "model": "ID. Buzz",
+  "yearOfProduction": 2022,
+  "generation": 1,
+  "acceleration": 6.4,
+  "euroCarSegment": "M",
+  "kerbWeight": 2384,
+  "grossWeight": 3000,
+  "drive": "AWDPermanent",
+  "transmission": "automatic",
+  "engines": [
+    {
+      "hp": 201,
+      "engineTorqueInNm": 310,
+      "energySource": "Electricity"
+    }
+  ],
+  "body": {
+    "numberOfDoors": 5,
+    "seats": 7,
+    "bodyType": "Minivan",
+    "additionalEquipment": {
+      "airConditioning": "FourOrMultiZoneAutomatic",
+      "headlights": "FullLed",
+      "control": "AdaptiveCruise"
+    }
+  },
+  "euroNCAP": {
+    "adultOccupantPercentage": 92,
+    "childOccupantPercentage": 87,
+    "vulnerableRoadUsersPercentage": 60,
+    "safetyAssistPercentage": 90
+  }
+}

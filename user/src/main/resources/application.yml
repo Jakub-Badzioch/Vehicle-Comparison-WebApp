@@ -1,0 +1,46 @@
+server:
+  port: 8184
+  tomcat:
+    relaxed-query-chars: [ '{','}' ]
+
+spring:
+  application:
+    name: vehicle-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_service
+    username: root
+    password: Gg7771999
+    tomcat:
+      jdbc-interceptors: org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReport(threshold=2,logFailed=true)
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        session:
+          events:
+            log:
+              QUERIES_SLOWER_THAN_MS: 10
+  flyway:
+    baseline-on-migrate: true
+    placeholderReplacement: false
+    enabled: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: jakub.badzioch.main@gmail.com
+    password: ggin xspg ehsp mneh
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls.enable: true
+jwt:
+  publicKey: classpath:app.pub
+  privateKey: classpath:app.key
+folder:
+  product: D:\Informatyka\PROJEKTY 2023\VehicleComparisonSitePhotos
+notification:
+  send-email: true

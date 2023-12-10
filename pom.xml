@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.vehicle</groupId>
+    <artifactId>vehicle-comparison-site</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>vehicle-comparison-site</name>
+    <description>Main pom of an application based on microservices' architecture. The application is a vehicle comparison engine
+        for statistics of selected vehicles.
+    </description>
+    <packaging>pom</packaging>
+    <properties>
+        <java.version>20</java.version>
+        <spring-cloud.version>2022.0.0</spring-cloud.version>
+    </properties>
+    <modules>
+        <module>commons</module>
+        <module>vehicle</module>
+        <module>user</module>
+        <module>discovery</module>
+    </modules>
+</project>

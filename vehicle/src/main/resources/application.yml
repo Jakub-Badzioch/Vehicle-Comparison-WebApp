@@ -1,0 +1,30 @@
+server:
+  port: 8183
+  tomcat:
+    relaxed-query-chars: [ '{','}' ]
+
+spring:
+  application:
+    name: vehicle-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/vehicle_service
+    username: root
+    password: Gg7771999
+    tomcat:
+      jdbc-interceptors: org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReport(threshold=2,logFailed=true)
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        session:
+          events:
+            log:
+              QUERIES_SLOWER_THAN_MS: 10
+jwt:
+  publicKey: classpath:app.pub
+  privateKey: classpath:app.key
+folder:
+  product: D:\Informatyka\PROJEKTY 2023\VehicleComparisonSitePhotos
