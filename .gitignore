@@ -1,9 +1,8 @@
 user/HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
-**/src/main/**/target/
-**/src/test/**/target/
-commons/target/
+!**/src/main/**/target/
+!**/src/test/**/target/
 
 ### IntelliJ IDEA ###
 .idea
@@ -14,3 +13,4 @@ commons/target/
 
 ### Maven ###
 **/.mvn/
+commons/target/
