@@ -26,8 +26,8 @@ public class VehicleController {
     private final VehicleService vehicleService;
     private final VehicleMapper vehicleMapper;
 
-    // post jest git do filtrowania (zamiast get) jesli link jest za dlugi
     @PostMapping("/search")
+    @Deprecated
     public Page<VehicleDTO> filterVehicles(@Valid @RequestBody FilteringAndPagingDTO filteringAndPagingDTO) {
         return vehicleService.filter(filteringAndPagingDTO)
                 .map(vehicleMapper::toDTO);
@@ -55,6 +55,7 @@ public class VehicleController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/all-yours")
+    @Deprecated
     public Page<VehicleDTO> getAllVehiclesCreatedByYou(@RequestParam int pageNumber, @RequestParam  int pageSize) {
         return vehicleService.getAllVehiclesCreatedByYou(pageNumber, pageSize)
                 .map(vehicleMapper::toDTO);

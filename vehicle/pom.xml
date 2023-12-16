@@ -18,6 +18,7 @@
         <spring-cloud.version>2022.0.3</spring-cloud.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.vehicle.manager</groupId>
@@ -79,6 +80,17 @@
         </dependency>
 
         <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast</artifactId>
+            <version>5.3.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.querydsl</groupId>
             <artifactId>querydsl-apt</artifactId>
             <version>4.2.2</version>
@@ -91,6 +103,12 @@
         </dependency>
 
         <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.13.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
@@ -100,12 +118,6 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.13.0</version>
         </dependency>
 
         <dependency>

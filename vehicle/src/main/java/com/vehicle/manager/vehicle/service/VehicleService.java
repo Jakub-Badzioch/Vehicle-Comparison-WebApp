@@ -9,6 +9,9 @@ import com.vehicle.manager.vehicle.utils.FileUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -54,12 +57,14 @@ public class VehicleService {
         Specification<Vehicle> spec = buildVehicleSpecification(filteringAndPagingDTO);
         return vehicleRepository.findAll(spec, pageable);
     }
-            /*Pageable pageable = PageRequest.of(filteringAndPagingDTO.getPage(), filteringAndPagingDTO.getSize()); // , Sort.by(Sort.Direction.ASC, "id")
-        Specification<Vehicle> specification = buildVehicleSpecification(filteringAndPagingDTO);
-        return vehicleRepository.findAll(specification, pageable);*/
-        //return vehicleRepository.findAll(PageRequest.of(0, 1));
+
+    @Cacheable(cacheNames = "vehicle", key = "#id")
+    public Vehicle getById(UUID id) {
+        return vehicleRepository.getReferenceById(id);
+    }
 
     @SneakyThrows
+    @CachePut(cacheNames = "vehicle", key = "#result.id")
     @Transactional
     public void create(Vehicle vehicle, List<MultipartFile> images) {
         vehicleRepository.save(vehicle);
@@ -75,6 +80,7 @@ public class VehicleService {
     }
 
     @Transactional
+    @CachePut(cacheNames = "vehicle", key = "#result.id")
     public Vehicle update(Vehicle vehicle, UUID id) {
         final Vehicle vehicleDb = vehicleRepository.getReferenceById(id);
         vehicleDb.setBrand(vehicle.getBrand());
@@ -93,6 +99,7 @@ public class VehicleService {
         return vehicleDb;
     }
 
+    @CacheEvict(cacheNames = "vehicle", key = "#id")
     @Transactional
     public void delete(UUID id) {
         Vehicle vehicle = vehicleRepository.getReferenceById(id);
@@ -128,8 +135,3 @@ public class VehicleService {
                 .build();
     }
 }
-
-/*
-Pageable pageable = PageRequest.of(filteringAndPagingDTO.getPage(), filteringAndPagingDTO.getSize(), Sort.by(Sort.Direction.ASC, "id"));
-return vehicleRepository.findAll(buildVehicleSpecification(filteringAndPagingDTO), pageable);
-*/

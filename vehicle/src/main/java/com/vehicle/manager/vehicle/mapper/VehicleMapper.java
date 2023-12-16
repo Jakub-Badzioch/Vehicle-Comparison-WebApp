@@ -11,4 +11,8 @@ public interface VehicleMapper {
     Vehicle toEntity(VehicleDTO vehicleDTO);
 
     VehicleDTO toDTO(Vehicle vehicle);
+    @Mapping(target = "engines", ignore = true)
+    @Mapping(target = "body", ignore = true)
+    @Mapping(target = "euroNCAP", ignore = true)
+    VehicleDTO toThinDTO(Vehicle vehicle);
 }
