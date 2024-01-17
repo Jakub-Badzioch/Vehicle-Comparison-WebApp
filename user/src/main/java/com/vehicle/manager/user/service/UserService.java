@@ -1,6 +1,6 @@
 package com.vehicle.manager.user.service;
 
-import com.vehicle.manager.commons.enumeration.TokenType;
+import com.vehicle.manager.commons.enumeration.Type;
 import com.vehicle.manager.user.dao.Token;
 import com.vehicle.manager.user.dao.User;
 import com.vehicle.manager.user.repository.UserRepository;
@@ -32,7 +32,7 @@ public class UserService {
 
         Token token = Token.builder()
                 .expirationDate(LocalDateTime.now().plusHours(48))
-                .tokenType(TokenType.EMAIL_ACTIVATION)
+                .type(Type.EMAIL_ACTIVATION)
                 .user(user)
                 .build();
         tokenService.save(token);
@@ -90,7 +90,7 @@ public class UserService {
         User user = userRepository.findByEmail(email).orElseThrow(EntityNotFoundException::new);
         Token token = Token.builder()
                 .expirationDate(LocalDateTime.now().plusHours(48))
-                .tokenType(TokenType.PASSWORD_RESET)
+                .type(Type.PASSWORD_RESET)
                 .user(user)
                 .build();
         tokenService.save(token);
@@ -102,7 +102,7 @@ public class UserService {
 
     @Transactional
     public void resetPassword(UUID tokenId, String newPassword) {
-        Token passwordResetToken = tokenService.getByIdAndType(tokenId, TokenType.PASSWORD_RESET);
+        Token passwordResetToken = tokenService.getByIdAndType(tokenId, Type.PASSWORD_RESET);
         User user = passwordResetToken.getUser();
         user.setPassword(passwordEncoder.encode(newPassword));
         tokenService.delete(passwordResetToken.getId());

@@ -24,6 +24,6 @@ public class User {
     @JoinTable(name = "user_role", inverseJoinColumns = @JoinColumn(name = "role_id"))
     @Singular
     private Set<Role> roles;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Token> tokens;
 }

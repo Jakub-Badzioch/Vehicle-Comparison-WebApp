@@ -1,6 +1,7 @@
 package com.vehicle.manager.user.service
 
-import com.vehicle.manager.commons.enumeration.TokenType
+import com.vehicle.manager.commons.enumeration.Type
+import com.vehicle.manager.commons.enumeration.Type
 import com.vehicle.manager.user.dao.Role
 import com.vehicle.manager.user.dao.Token
 import com.vehicle.manager.user.dao.User
@@ -46,7 +47,7 @@ class UserServiceSpec extends Specification {
             def token = it[0]
             token.id == UUID.randomUUID()
             token.expirationDate != null
-            token.tokenType == TokenType.EMAIL_ACTIVATION
+            token.tokenType == Type.EMAIL_ACTIVATION
             token.user == user
             token.id = uuid
             return token
@@ -218,7 +219,7 @@ class UserServiceSpec extends Specification {
             def token = it[0]
             token.id == UUID.randomUUID()
             token.expirationDate != null
-            token.tokenType == TokenType.EMAIL_ACTIVATION
+            token.tokenType == Type.EMAIL_ACTIVATION
             token.user == user
             token.id = uuid
             return token
@@ -253,7 +254,7 @@ class UserServiceSpec extends Specification {
         userService.resetPassword(id, newPassword)
 
         then:
-        1 * tokenService.getByIdAndType(id, TokenType.PASSWORD_RESET) >> passwordResetToken
+        1 * tokenService.getByIdAndType(id, Type.PASSWORD_RESET) >> passwordResetToken
         1 * passwordResetToken.getUser() >> user
         1 * passwordEncoder.encode(newPassword) >> encodedNewPassword
         1 * user.setPassword(encodedNewPassword)

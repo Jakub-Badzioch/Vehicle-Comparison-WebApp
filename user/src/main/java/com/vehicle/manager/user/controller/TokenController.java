@@ -15,7 +15,8 @@ public class TokenController {
 
     private final TokenService tokenService;
 
-    @DeleteMapping("/{id}")
+    // must be get for now cause frontend dopsnt exists and in browser only get works
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable UUID id) {
         tokenService.delete(id);

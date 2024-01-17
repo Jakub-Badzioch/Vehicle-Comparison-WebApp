@@ -23,7 +23,6 @@ public class VehicleControllerV2 {
     private final VehicleMapper vehicleMapper;
 
     @PostMapping("/search")
-    @Deprecated
     public Page<VehicleDTO> filterVehicles(@Valid @RequestBody FilteringAndPagingDTO filteringAndPagingDTO) {
         return vehicleService.filter(filteringAndPagingDTO)
                 .map(vehicleMapper::toThinDTO);

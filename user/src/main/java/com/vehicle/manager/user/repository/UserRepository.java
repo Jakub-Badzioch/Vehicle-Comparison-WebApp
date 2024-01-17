@@ -22,7 +22,7 @@ public interface UserRepository extends JpaRepository<User, UUID> {
             left join Token t
             on u.id = t.user.id
             where u.email = ?1
-            and (t is null or t.tokenType != 'EMAIL_ACTIVATION')
+            and (t is null or t.type != 'EMAIL_ACTIVATION')
             """)
     Optional<User> findByEmailAndTokensTokenTypeNot(String email);
 }

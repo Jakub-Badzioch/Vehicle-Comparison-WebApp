@@ -1,4 +1,4 @@
-package com.vehicle.manager.user.security;
+package com.vehicle.manager.user.security.service;
 
 
 import com.vehicle.manager.user.repository.TokenRepository;

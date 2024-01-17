@@ -1,6 +1,7 @@
 package com.vehicle.manager.user.service
 
-import com.vehicle.manager.commons.enumeration.TokenType
+import com.vehicle.manager.commons.enumeration.Type
+import com.vehicle.manager.commons.enumeration.Type
 import com.vehicle.manager.user.dao.Token
 import com.vehicle.manager.user.dao.User
 import com.vehicle.manager.user.repository.TokenRepository
@@ -39,13 +40,13 @@ class TokenServiceSpec extends Specification {
         def user = Mock(User)
         def passwordResetToken = Mock(Token)
         def tokens = [passwordResetToken]
-        def passwordReset = TokenType.PASSWORD_RESET
+        def passwordReset = Type.PASSWORD_RESET
 
         when:
         def result = tokenService.hasUserPasswordResetToken(user)
 
         then:
-        1 * tokenRepository.findAllByUserAndTokenType(user, passwordReset) >> tokens
+        1 * tokenRepository.findAllByUserAndType(user, passwordReset) >> tokens
         0 * _
         result
     }

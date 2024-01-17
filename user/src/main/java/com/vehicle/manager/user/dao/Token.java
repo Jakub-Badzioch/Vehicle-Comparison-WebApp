@@ -1,7 +1,7 @@
 package com.vehicle.manager.user.dao;
 
 
-import com.vehicle.manager.commons.enumeration.TokenType;
+import com.vehicle.manager.commons.enumeration.Type;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +22,10 @@ public class Token {
     private UUID id;
     private LocalDateTime expirationDate;
     @Enumerated(EnumType.STRING)
-    private TokenType tokenType;
+    private Type type;
     @ManyToOne
     private User user;
+    // usable only for jwt. Needed for 'log out' functionality
+    @Lob
+    private String value;
 }

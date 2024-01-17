@@ -1,6 +1,7 @@
 package com.vehicle.manager.user.service
 
 import com.vehicle.manager.commons.dto.JwtTokenDTO
+import com.vehicle.manager.user.security.service.SecurityService
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -14,7 +15,7 @@ import spock.lang.Specification
 class LoginServiceSpec extends Specification {
     AuthenticationManager authenticationManager = Mock(AuthenticationManager)
     JwtEncoder jwtEncoder = Mock(JwtEncoder)
-    LoginService loginService = new LoginService(authenticationManager, jwtEncoder)
+    SecurityService loginService = new SecurityService(authenticationManager, jwtEncoder)
 
     def "logIn_ValidEmailAndPassword_ReturnsToken"() {
         given:
@@ -24,7 +25,7 @@ class LoginServiceSpec extends Specification {
         def jwt = Mock(Jwt)
 
         when:
-        def result = loginService.logIn(email, password)
+        def result = loginService.login(email, password)
 
         then:
         1 * authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password)) >> authentication
@@ -47,7 +48,7 @@ class LoginServiceSpec extends Specification {
         def password = "wrongpassword"
 
         when:
-        loginService.logIn(email, password)
+        loginService.login(email, password)
 
         then:
         1 * authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password)) >> {

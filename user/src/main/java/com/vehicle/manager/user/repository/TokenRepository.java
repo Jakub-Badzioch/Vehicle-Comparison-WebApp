@@ -1,6 +1,6 @@
 package com.vehicle.manager.user.repository;
 
-import com.vehicle.manager.commons.enumeration.TokenType;
+import com.vehicle.manager.commons.enumeration.Type;
 import com.vehicle.manager.user.dao.Token;
 import com.vehicle.manager.user.dao.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,9 +14,11 @@ public interface TokenRepository extends JpaRepository<Token, UUID> {
 
     List<Token> findByExpirationDateBefore(LocalDateTime expirationDate);
 
-    List<Token> findAllByUserAndTokenType(User user, TokenType passwordReset);
+    List<Token> findAllByUserAndType(User user, Type passwordReset);
 
     void deleteByIdIn(List<UUID> list);
 
-    Optional<Token> findByIdAndTokenType(UUID tokenId, TokenType tokenType);
+    Optional<Token> findByIdAndType(UUID tokenId, Type type);
+
+    boolean existsByValue(String value);
 }

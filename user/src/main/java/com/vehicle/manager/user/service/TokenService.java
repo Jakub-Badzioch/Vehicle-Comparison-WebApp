@@ -1,6 +1,6 @@
 package com.vehicle.manager.user.service;
 
-import com.vehicle.manager.commons.enumeration.TokenType;
+import com.vehicle.manager.commons.enumeration.Type;
 import com.vehicle.manager.user.dao.Token;
 import com.vehicle.manager.user.dao.User;
 import com.vehicle.manager.user.repository.TokenRepository;
@@ -29,7 +29,7 @@ public class TokenService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     public boolean hasUserPasswordResetToken(User user) {
-        return !tokenRepository.findAllByUserAndTokenType(user, TokenType.PASSWORD_RESET)
+        return !tokenRepository.findAllByUserAndType(user, Type.PASSWORD_RESET)
                 .isEmpty();
     }
 
@@ -37,7 +37,7 @@ public class TokenService {
         return tokenRepository.getReferenceById(id);
     }
 
-    public Token getByIdAndType(UUID tokenId, TokenType tokenType) {
-        return tokenRepository.findByIdAndTokenType(tokenId, tokenType).orElseThrow(EntityNotFoundException::new);
+    public Token getByIdAndType(UUID tokenId, Type type) {
+        return tokenRepository.findByIdAndType(tokenId, type).orElseThrow(EntityNotFoundException::new);
     }
 }

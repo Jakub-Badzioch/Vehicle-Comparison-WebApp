@@ -1,6 +1,6 @@
 package com.vehicle.manager.user.scheduler;
 
-import com.vehicle.manager.commons.enumeration.TokenType;
+import com.vehicle.manager.commons.enumeration.Type;
 import com.vehicle.manager.user.dao.Token;
 import com.vehicle.manager.user.dao.User;
 import com.vehicle.manager.user.repository.TokenRepository;
@@ -26,7 +26,7 @@ public class TokenScheduler {
         List<Token> expiredEmailActivationTokens = new ArrayList<>();
         List<Token> expiredOtherTokens = new ArrayList<>();
         for (Token expiredToken : expiredTokens) {
-            if (expiredToken.getTokenType().equals(TokenType.EMAIL_ACTIVATION)) {
+            if (expiredToken.getType().equals(Type.EMAIL_ACTIVATION)) {
                 expiredEmailActivationTokens.add(expiredToken);
             } else {
                 expiredOtherTokens.add(expiredToken);

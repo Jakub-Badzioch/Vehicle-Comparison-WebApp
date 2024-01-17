@@ -3,8 +3,6 @@ package com.vehicle.manager.vehicle.controller;
 import com.vehicle.manager.commons.dto.ErrorDTO;
 import com.vehicle.manager.commons.dto.FieldErrorDTO;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.servlet.ServletException;
-import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
