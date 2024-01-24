@@ -1,0 +1,2 @@
+ALTER TABLE token
+MODIFY COLUMN value varchar(500) DEFAULT NULL;
