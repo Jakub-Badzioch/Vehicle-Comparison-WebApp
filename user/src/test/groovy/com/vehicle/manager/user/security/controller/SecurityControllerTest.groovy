@@ -1,4 +1,4 @@
-
+package com.vehicle.manager.user.security.controller
 
 
 import com.vehicle.manager.user.repository.TokenRepository
@@ -9,8 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.core.io.ResourceLoader
+import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.oauth2.jwt.JwtClaimsSet
+import org.springframework.security.oauth2.jwt.JwtEncoder
+import org.springframework.security.oauth2.jwt.JwtEncoderParameters
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
@@ -20,6 +24,8 @@ import org.testcontainers.containers.MySQLContainer
 import spock.lang.Specification
 
 import java.nio.charset.Charset
+import java.time.Duration
+import java.time.Instant
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
@@ -28,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-class LoginControllerSpec extends Specification {
+class SecurityControllerTest extends Specification {
 
     private static final MySQLContainer mySQLContainer
     @Autowired
@@ -40,9 +46,9 @@ class LoginControllerSpec extends Specification {
     @Autowired
     private TokenRepository tokenRepository
     @Autowired
-    private PasswordEncoder passwordEncoder
-    @Autowired
     private RoleService roleService
+    @Autowired
+    private JwtEncoder jwtEncoder
 
     static {
         mySQLContainer = new MySQLContainer("mysql:8.0")
@@ -63,7 +69,7 @@ class LoginControllerSpec extends Specification {
     @Sql("/sql/insertUser.sql")
     def "Success when trying to log in on active account with valid email and password"() {
         expect:
-        mockMvc.perform(post("/api/v1/login")
+        mockMvc.perform(post("/api/v1/security/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(IOUtils.toString(resourceLoader.getResource("classpath:json/loginRequestWithCorrectEmailAndPassword.json").getInputStream(), Charset.defaultCharset())))
                 .andExpect(status().isOk())
@@ -74,7 +80,7 @@ class LoginControllerSpec extends Specification {
     @Sql("/sql/insertUser.sql")
     def "Fail when trying to log in on active account with invalid password"() {
         expect:
-        mockMvc.perform(post("/api/v1/login")
+        mockMvc.perform(post("/api/v1/security/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(IOUtils.toString(resourceLoader.getResource("classpath:json/loginRequestWithIncorrectPassword.json").getInputStream(), Charset.defaultCharset())))
                 .andExpect(status().isUnauthorized())
@@ -85,10 +91,33 @@ class LoginControllerSpec extends Specification {
     @Sql("/sql/insertUser.sql")
     def "Fail when trying to log in on inactive account with valid email and password"() {
         expect:
-        mockMvc.perform(post("/api/v1/login")
+        mockMvc.perform(post("/api/v1/security/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(IOUtils.toString(resourceLoader.getResource("classpath:json/loginRequestWithIncorrectPassword.json").getInputStream(), Charset.defaultCharset())))
                 .andExpect(status().isUnauthorized())
                 .andExpect(jsonPath('$.message').value("Bad credentials"))
+    }
+
+
+
+
+
+
+
+    def "Success logout"() {
+        given:
+        JwtClaimsSet claims = JwtClaimsSet.builder()
+                .subject("authentication")
+                .expiresAt(Instant.now() + Duration.ofDays(1))
+                .claim("scope", "USER")
+                .build()
+        final String tokenValue = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue()
+
+        expect:
+        mockMvc.perform(post("/api/v1/security/logout")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + tokenValue))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath('$').doesNotExist())
     }
 }
